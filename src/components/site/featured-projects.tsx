@@ -49,6 +49,7 @@ function ProjectCard({
   project: (typeof PROJECTS)[number];
   index: number;
   reduce: boolean | null;
+  key?: React.Key;
 }) {
   // Inverted alternating bento: Row 1 is 7+5, Row 2 is 5+7. On tablet (md), all are 6+6.
   const span =
