@@ -11,7 +11,7 @@ export function Testimonials() {
   const item = TESTIMONIALS[idx];
 
   return (
-    <section className="relative overflow-hidden bg-charcoal py-24 text-white sm:py-32 lg:py-40">
+    <section id="testimonials" className="relative overflow-hidden bg-charcoal py-24 text-white sm:py-32 lg:py-40">
       <div className="absolute inset-0 grid-bg opacity-30" />
       <div className="pointer-events-none absolute -left-20 top-10 select-none font-display text-[28rem] leading-none text-white/[0.025]">
         “

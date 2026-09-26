@@ -6,5 +6,7 @@ declare module "lucide-react" {
     size?: string | number;
     color?: string;
     strokeWidth?: string | number;
+    fill?: string;
+    stroke?: string;
   }
 }

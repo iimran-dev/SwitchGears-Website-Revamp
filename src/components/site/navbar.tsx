@@ -59,15 +59,15 @@ export function Navbar() {
             </span>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1" aria-label="Primary">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="group relative px-3.5 py-2 text-[13px] font-500 text-white/75 transition-colors hover:text-white"
+                className="group relative px-2.5 xl:px-3.5 py-2 text-[12px] xl:text-[13px] font-500 text-white/75 transition-colors hover:text-white"
               >
                 {l.label}
-                <span className="absolute left-3.5 right-3.5 -bottom-0.5 h-px origin-left scale-x-0 bg-accent-red transition-transform duration-300 group-hover:scale-x-100" />
+                <span className="absolute left-2.5 xl:left-3.5 right-2.5 xl:right-3.5 -bottom-0.5 h-px origin-left scale-x-0 bg-accent-red transition-transform duration-300 group-hover:scale-x-100" />
               </a>
             ))}
           </nav>
@@ -104,39 +104,45 @@ export function Navbar() {
           >
             <div className="absolute inset-0 bg-ink/95 backdrop-blur-xl" />
             <motion.nav
-              className="relative flex h-full flex-col justify-center px-8 pt-20"
+              className="relative flex h-full flex-col justify-start overflow-y-auto px-6 sm:px-8 pt-20 pb-10"
               aria-label="Mobile"
               initial="hidden"
               animate="visible"
               variants={{
                 hidden: {},
-                visible: { transition: { staggerChildren: reduce ? 0 : 0.06, delayChildren: 0.1 } },
+                visible: { transition: { staggerChildren: reduce ? 0 : 0.04, delayChildren: 0.05 } },
               }}
             >
-              {NAV_LINKS.map((l, i) => (
-                <motion.a
-                  key={l.href}
-                  href={l.href}
+              <div className="flex flex-col">
+                {NAV_LINKS.map((l, i) => (
+                  <motion.a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="group flex items-baseline justify-between border-b border-white/10 py-3.5 sm:py-4 transition-colors"
+                    variants={{
+                      hidden: { opacity: 0, x: -16 },
+                      visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+                    }}
+                  >
+                    <span className="font-display text-xl sm:text-2xl font-600 text-white group-hover:text-accent-red transition-colors">
+                      {l.label}
+                    </span>
+                    <span className="font-mono text-xs text-white/40">0{i + 1}</span>
+                  </motion.a>
+                ))}
+              </div>
+              <div className="mt-6 flex flex-col gap-3">
+                <a
+                  href="#contact"
                   onClick={() => setOpen(false)}
-                  className="group flex items-baseline justify-between border-b border-white/10 py-5"
-                  variants={{
-                    hidden: { opacity: 0, x: -20 },
-                    visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-                  }}
+                  className="btn-arrow inline-flex items-center justify-center gap-2 rounded-full bg-accent-red px-6 py-3.5 text-sm font-600 text-white shadow-md active:scale-[0.98]"
                 >
-                  <span className="font-display text-3xl font-600 text-white">{l.label}</span>
-                  <span className="eyebrow text-white/40">0{i + 1}</span>
-                </motion.a>
-              ))}
-              <a
-                href="#contact"
-                onClick={() => setOpen(false)}
-                className="btn-arrow mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-accent-red px-6 py-4 text-sm font-600 text-white"
-              >
-                Get a Quote
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <p className="mt-8 text-xs text-white/50">{SITE.phone}</p>
+                  Get a Quote
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+                <p className="text-center text-xs text-white/50">{SITE.phone}</p>
+              </div>
             </motion.nav>
           </motion.div>
         )}

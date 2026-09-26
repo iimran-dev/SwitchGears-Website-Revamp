@@ -36,7 +36,7 @@ export function WhyChooseUs() {
   }, []);
 
   return (
-    <section className="relative bg-charcoal py-14 text-white sm:py-20 lg:py-24">
+    <section id="why-choose-us" className="relative bg-charcoal py-14 text-white sm:py-20 lg:py-24">
       <div className="absolute inset-0 grid-bg opacity-35" />
       <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8">
         {/* Header */}
