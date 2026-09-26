@@ -35,10 +35,6 @@ export default function Home() {
       <FeaturedProjects />
       {/* 09 */}
       <ManufacturingExcellence />
-      {/* 10 */}
-      <Certifications />
-      {/* 11 */}
-      <KnowledgeCentre />
       {/* 12 */}
       <Testimonials />
       {/* 13 */}

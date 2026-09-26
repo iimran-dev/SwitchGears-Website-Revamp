@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Check, Cpu, Zap, Gauge } from "lucide-react";
+import { ArrowUpRight, Check, Cpu, Gauge, Zap } from "lucide-react";
 import { PRODUCTS, CONFIGURATOR } from "./data";
 import { cn } from "@/lib/utils";
 
@@ -22,16 +22,16 @@ const APP_TO_PRODUCT: Record<string, string> = {
   "Process Automation": "plc",
 };
 
-function capacityFor(industry: string, voltage: string, productId: string): string {
+function capacityFor(voltage: string, productId: string): string {
   const base: Record<string, string> = {
     mcc: "Up to 6300A · Form 3b/4b",
-    pcc: "Up to 6300A · Main LV distribution",
-    apfc: "Up to 24 stages · Detuned",
-    fire: "Electric + Diesel · Auto start",
-    sync: "Mains + DG · AMF logic",
-    plc: "Digital + Analog I/O · SCADA-ready",
+    pcc: "Up to 6300A · Main LV Distribution",
+    apfc: "Up to 24 Stages · Detuned",
+    fire: "Electric + Diesel · Dual Pump",
+    sync: "Mains + DG · AMF Logic",
+    plc: "Digital + Analog I/O · SCADA",
   };
-  const v = voltage === "Custom" ? "multi-voltage" : voltage;
+  const v = voltage === "Custom" ? "Multi-voltage" : voltage;
   return `${base[productId]} · ${v}`;
 }
 
@@ -42,102 +42,87 @@ function recommend(industry: string, voltage: string, application: string): Rec 
     Healthcare: "Hospitals & Healthcare",
     Manufacturing: "Manufacturing Units",
     "IT / Data Center": "IT & Data Centers",
-    Hospitality: "Hospitality",
+    Hospitality: "Hospitality Facilities",
     Infrastructure: "Infrastructure Projects",
   };
   return {
     productId,
-    config: `Engineered for ${industryLabel[industry] ?? industry} — ${voltage} nominal`,
-    capacity: capacityFor(industry, voltage, productId),
+    config: `Engineered for ${industryLabel[industry] ?? industry}`,
+    capacity: capacityFor(voltage, productId),
     forUse: industryLabel[industry] ?? industry,
   };
 }
 
 export function PanelConfigurator() {
   const reduce = useReducedMotion();
-  const [industry, setIndustry] = React.useState<string>("");
-  const [voltage, setVoltage] = React.useState<string>("");
-  const [application, setApplication] = React.useState<string>("");
+  const [industry, setIndustry] = React.useState<string>("Manufacturing");
+  const [voltage, setVoltage] = React.useState<string>("415V");
+  const [application, setApplication] = React.useState<string>("Motor Control");
 
-  const ready = industry && voltage && application;
+  const ready = Boolean(industry && voltage && application);
   const rec: Rec | null = ready ? recommend(industry, voltage, application) : null;
   const product = rec ? PRODUCTS.find((p) => p.id === rec.productId)! : PRODUCTS[0];
 
   const inputs = [
-    { no: "01", label: "Select Industry", value: industry, options: CONFIGURATOR.industries, set: setIndustry },
-    { no: "02", label: "Select Voltage", value: voltage, options: CONFIGURATOR.voltages, set: setVoltage },
-    { no: "03", label: "Select Application", value: application, options: CONFIGURATOR.applications, set: setApplication },
+    { no: "01", label: "Industry", value: industry, options: CONFIGURATOR.industries, set: setIndustry },
+    { no: "02", label: "Voltage", value: voltage, options: CONFIGURATOR.voltages, set: setVoltage },
+    { no: "03", label: "Application", value: application, options: CONFIGURATOR.applications, set: setApplication },
   ] as const;
 
   return (
-    <section id="configurator" className="relative overflow-hidden bg-ink text-white">
-      {/* energy backdrop */}
-      <div className="absolute inset-0 grid-bg opacity-40" />
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/40 via-ink to-ink" />
-      {!reduce && (
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -inset-y-10 left-0 w-1/3 bg-gradient-to-r from-accent-red/10 to-transparent animate-energy-wave blur-2xl" />
-        </div>
-      )}
+    <section id="configurator" className="relative overflow-hidden bg-ink text-white py-14 sm:py-20 lg:py-24">
+      {/* Background accents */}
+      <div className="absolute inset-0 grid-bg opacity-30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-ink to-ink" />
 
-      <div className="relative mx-auto max-w-[1400px] px-5 py-24 sm:px-8 sm:py-32 lg:py-40">
-        {/* Header */}
-        <div className="max-w-3xl">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-8 bg-accent-red" />
-            <span className="eyebrow text-white/55">Smart Panel Configurator</span>
+      <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8">
+        {/* Header — compact & punchy */}
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div className="flex items-center gap-2.5">
+              <span className="h-px w-6 bg-accent-red" />
+              <span className="eyebrow text-white/55">Panel Configurator</span>
+            </div>
+            <h2 className="mt-2.5 font-display text-[clamp(1.75rem,3.4vw,3rem)] font-700 uppercase leading-[1.04] tracking-[-0.02em]">
+              Find your panel <span className="text-accent-red">in seconds.</span>
+            </h2>
           </div>
-          <h2 className="mt-5 font-display text-[clamp(2rem,4.4vw,3.6rem)] font-700 uppercase leading-[1.0] tracking-[-0.02em]">
-            Find your panel
-            <br />
-            in <span className="text-accent-red">three inputs.</span>
-          </h2>
-          <p className="mt-6 max-w-lg text-sm leading-relaxed text-white/60 sm:text-base">
-            Not sure which panel suits your requirement? Answer three questions and get a
-            personalized recommendation — panel type, configuration, key benefits and an
-            indicative capacity range.
+          <p className="max-w-xs text-xs sm:text-sm text-white/55 leading-relaxed sm:pb-1">
+            Select your parameters below to receive an instant engineered panel recommendation.
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:mt-20 lg:grid-cols-12 lg:gap-8">
-          {/* Inputs */}
+        {/* 2-Column Minimal Configurator */}
+        <div className="mt-8 sm:mt-12 grid grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-8">
+          {/* Inputs Column */}
           <div className="lg:col-span-7">
-            <div className="rounded-sm border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-              {inputs.map((input, idx) => (
-                <div
-                  key={input.no}
-                  className={cn(idx > 0 && "mt-8 border-t border-white/10 pt-8")}
-                >
+            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-4 sm:p-6 backdrop-blur-sm space-y-5 sm:space-y-6">
+              {inputs.map((input) => (
+                <div key={input.no} className="space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <label className="flex items-center gap-3">
-                      <span className="font-display text-xs font-700 text-accent-red">
-                        {input.no}
-                      </span>
-                      <span className="text-sm font-600 text-white/80">{input.label}</span>
-                    </label>
+                    <span className="flex items-center gap-2 text-xs sm:text-sm font-600 text-white/90">
+                      <span className="font-display text-[11px] font-700 text-accent-red">{input.no}</span>
+                      {input.label}
+                    </span>
                     {input.value && (
-                      <motion.span
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="inline-flex items-center gap-1 text-[10px] font-600 uppercase tracking-[0.18em] text-accent-red"
-                      >
-                        <Check className="h-3 w-3" /> Selected
-                      </motion.span>
+                      <span className="text-[10px] font-semibold uppercase tracking-wider text-accent-red inline-flex items-center gap-1">
+                        <Check className="h-2.5 w-2.5" /> {input.value}
+                      </span>
                     )}
                   </div>
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {input.options.map((opt) => {
                       const sel = input.value === opt;
                       return (
                         <button
                           key={opt}
                           type="button"
-                          onClick={() => input.set(sel ? "" : opt)}
+                          onClick={() => input.set(opt)}
                           className={cn(
-                            "rounded-full border px-4 py-2 text-xs font-500 transition-all",
+                            "rounded-full border px-3 py-1.5 text-xs font-500 transition-all active:scale-[0.98]",
                             sel
-                              ? "border-accent-red bg-accent-red text-white"
-                              : "border-white/15 text-white/60 hover:border-white/40 hover:text-white"
+                              ? "border-accent-red bg-accent-red text-white shadow-sm shadow-accent-red/20"
+                              : "border-white/15 bg-white/[0.02] text-white/60 hover:border-white/35 hover:text-white"
                           )}
                         >
                           {opt}
@@ -150,104 +135,68 @@ export function PanelConfigurator() {
             </div>
           </div>
 
-          {/* Result */}
+          {/* Recommendation Column */}
           <div className="lg:col-span-5">
-            <div className="relative h-full overflow-hidden rounded-sm border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-6 sm:p-8">
-              {/* tech corners */}
-              <span className="absolute left-3 top-3 h-3 w-3 border-l border-t border-accent-red/60" />
-              <span className="absolute right-3 top-3 h-3 w-3 border-r border-t border-accent-red/60" />
-              <span className="absolute left-3 bottom-3 h-3 w-3 border-l border-b border-accent-red/60" />
-              <span className="absolute right-3 bottom-3 h-3 w-3 border-r border-b border-accent-red/60" />
-
-              <div className="flex items-center justify-between">
-                <span className="eyebrow text-white/45">Recommendation</span>
-                <span className="flex items-center gap-1.5 text-[10px] font-600 uppercase tracking-[0.18em] text-white/40">
-                  <span className={cn("h-1.5 w-1.5 rounded-full", ready ? "bg-accent-red animate-pulse-line" : "bg-white/30")} />
-                  {ready ? "Ready" : "Awaiting inputs"}
+            <div className="relative rounded-xl border border-white/15 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-5 sm:p-6 backdrop-blur-md shadow-xl">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <span className="text-[10px] font-600 uppercase tracking-widest text-white/50">Recommendation</span>
+                <span className="inline-flex items-center gap-1.5 text-[10px] font-600 uppercase tracking-wider text-accent-red">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent-red animate-pulse-line" />
+                  Live Match
                 </span>
               </div>
 
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={rec ? product.id : "empty"}
-                  initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
+                  key={product.id + voltage + industry}
+                  initial={reduce ? { opacity: 0 } : { opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={reduce ? { opacity: 0 } : { opacity: 0, y: -12 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="mt-6"
+                  exit={reduce ? { opacity: 0 } : { opacity: 0, y: -6 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-4 space-y-4"
                 >
-                  {rec ? (
-                    <>
-                      <div className="flex items-start gap-3">
-                        <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-accent-red/15">
-                          <Cpu className="h-5 w-5 text-accent-red" />
-                        </div>
-                        <div>
-                          <h3 className="font-display text-2xl font-700 tracking-tight sm:text-3xl">
-                            {product.name}
-                          </h3>
-                          <p className="text-sm text-white/55">{product.full}</p>
-                        </div>
-                      </div>
-
-                      <div className="mt-6 space-y-4">
-                        <div>
-                          <span className="eyebrow text-white/40">Recommended Configuration</span>
-                          <p className="mt-2 text-sm leading-relaxed text-white/80">
-                            {rec.config}
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-2.5 rounded-sm border border-white/10 bg-white/[0.02] p-3">
-                          <Gauge className="h-4 w-4 text-accent-red" />
-                          <div>
-                            <span className="eyebrow text-white/40">Indicative Capacity</span>
-                            <p className="text-sm font-600 text-white">{rec.capacity}</p>
-                          </div>
-                        </div>
-                        <div>
-                          <span className="eyebrow text-white/40">Key Benefits</span>
-                          <ul className="mt-2.5 grid grid-cols-1 gap-2">
-                            {product.benefits.map((b) => (
-                              <li key={b} className="flex items-center gap-2.5 text-sm text-white/75">
-                                <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-accent-red/15">
-                                  <Check className="h-2.5 w-2.5 text-accent-red" />
-                                </span>
-                                {b}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-
-                      <a
-                        href="#contact"
-                        className="btn-arrow mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent-red px-6 py-3.5 text-sm font-600 text-white transition-transform hover:scale-[1.01]"
-                      >
-                        Request Quote
-                        <ArrowUpRight className="h-4 w-4" />
-                      </a>
-                      <p className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-white/40">
-                        <Zap className="h-3 w-3" />
-                        Indicative recommendation — final spec confirmed by our engineers.
-                      </p>
-                    </>
-                  ) : (
-                    <div className="flex h-full min-h-[280px] flex-col items-center justify-center text-center">
-                      <div className="relative flex h-16 w-16 items-center justify-center">
-                        {!reduce && (
-                          <motion.span
-                            animate={{ rotate: 360 }}
-                            transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
-                            className="absolute inset-0 rounded-full border border-dashed border-white/20"
-                          />
-                        )}
-                        <Cpu className="h-6 w-6 text-white/40" />
-                      </div>
-                      <p className="mt-5 max-w-[16rem] text-sm text-white/50">
-                        Select an industry, voltage and application to generate a tailored panel recommendation.
-                      </p>
+                  {/* Panel Title & Tag */}
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-red/15 text-accent-red">
+                      <Cpu className="h-5 w-5" />
                     </div>
-                  )}
+                    <div>
+                      <h3 className="font-display text-xl sm:text-2xl font-700 text-white tracking-tight">
+                        {product.name}
+                      </h3>
+                      <p className="text-xs text-white/60">{product.full}</p>
+                    </div>
+                  </div>
+
+                  {/* Key Highlights */}
+                  <div className="space-y-2 rounded-lg border border-white/10 bg-black/25 p-3 text-xs">
+                    <div className="flex items-center justify-between text-white/70">
+                      <span className="text-white/40">Configuration</span>
+                      <span className="font-medium text-white text-right truncate max-w-[200px]">{rec?.config}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-white/70">
+                      <span className="text-white/40">Capacity / Rating</span>
+                      <span className="font-medium text-white">{rec?.capacity}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-white/70">
+                      <span className="text-white/40">Tested Standard</span>
+                      <span className="font-medium text-white">CPRI 50kA · IS 8623</span>
+                    </div>
+                  </div>
+
+                  {/* Action CTA */}
+                  <a
+                    href="#contact"
+                    className="btn-arrow inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent-red px-5 py-3 text-xs sm:text-sm font-600 text-white shadow-md shadow-accent-red/25 transition-all hover:bg-accent-red-soft hover:scale-[1.01] active:scale-[0.98]"
+                  >
+                    Request Quote for {product.name}
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+
+                  <p className="flex items-center justify-center gap-1.5 text-[10px] text-white/40 text-center">
+                    <Zap className="h-3 w-3 text-accent-red shrink-0" />
+                    Indicative sizing. Final spec verified with your SLD by our engineers.
+                  </p>
                 </motion.div>
               </AnimatePresence>
             </div>

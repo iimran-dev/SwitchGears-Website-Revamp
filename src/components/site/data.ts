@@ -16,7 +16,7 @@ export const HERO = {
     { value: "50kA", label: "Tested" },
   ],
   image:
-    "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/dcefe59d5d70.png",
+    "https://images.unsplash.com/photo-1593133240645-731af16be693?auto=format&fit=crop&w=2400&q=80",
 };
 
 /* Trust wall — generic sector descriptors (not fabricated named clients) */
@@ -41,7 +41,7 @@ export const BRAND_STORY = {
     text: "To power a safer, smarter and more sustainable world through innovative electrical solutions.",
   },
   image:
-    "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f40eb1e07d77.jpg",
+    "https://images.unsplash.com/photo-1764115424769-ebdd2683d5a8?auto=format&fit=crop&w=1200&q=80",
 };
 
 export const WHY_CHOOSE_US = [
@@ -93,7 +93,7 @@ export const PRODUCTS = [
     ],
     benefits: ["Reliable motor control", "High operational safety", "Customisable design", "CPRI tested"],
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/36b44c917f5d.png",
+      "https://images.unsplash.com/photo-1780034766462-e8af5f2c9e22?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "pcc",
@@ -110,7 +110,7 @@ export const PRODUCTS = [
     ],
     benefits: ["Reliable power distribution", "Integrated metering", "Selective coordination", "CPRI tested"],
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/4666795ce786.jpg",
+      "https://images.unsplash.com/photo-1576446468729-7674e99608f5?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "apfc",
@@ -127,7 +127,7 @@ export const PRODUCTS = [
     ],
     benefits: ["Reduces power-factor penalty", "Improves voltage profile", "Lower system losses", "Auto step control"],
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e4a7ada13076.jpg",
+      "https://images.unsplash.com/photo-1751887687510-4bdc01371f27?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "fire",
@@ -144,7 +144,7 @@ export const PRODUCTS = [
     ],
     benefits: ["Life-safety compliance", "Dual-pump reliability", "Pressure-maintenance logic", "Tamper monitoring"],
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/51179c02e3cf.jpg",
+      "https://images.unsplash.com/photo-1773517460230-15928a2adc4e?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "sync",
@@ -161,7 +161,7 @@ export const PRODUCTS = [
     ],
     benefits: ["Seamless power transfer", "Multi-DG load sharing", "Mains-failure auto start", "Reverse-power protection"],
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c81b5dac7655.jpg",
+      "https://images.unsplash.com/photo-1775519519950-9c48495b5488?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "plc",
@@ -178,7 +178,7 @@ export const PRODUCTS = [
     ],
     benefits: ["Process automation", "Remote monitoring", "Recipe management", "PLC + SCADA ready"],
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/825b543bdf2b.jpg",
+      "https://images.unsplash.com/photo-1780034766295-43db0f2a0fb7?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
@@ -187,37 +187,37 @@ export const INDUSTRIES = [
     name: "Commercial Buildings",
     desc: "Power distribution & metering for offices, malls and high-rise complexes.",
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/af2466f44fdf.jpg",
+      "https://images.unsplash.com/photo-1771197359037-4cbe33fed006?auto=format&fit=crop&w=1200&q=80",
   },
   {
     name: "Hospitals & Healthcare",
     desc: "Life-critical power continuity with AMF, fire-pump and isolation panels.",
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e2b79758ac1d.jpg",
+      "https://images.unsplash.com/photo-1777269749032-d8d458ae594d?auto=format&fit=crop&w=1200&q=80",
   },
   {
     name: "Manufacturing & Industrial",
     desc: "Motor control and automation panels for continuous-duty production lines.",
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f00a2a829b91.jpg",
+      "https://images.unsplash.com/photo-1589793463357-5fb813435467?auto=format&fit=crop&w=1200&q=80",
   },
   {
     name: "IT Parks & Data Centers",
     desc: "High-availability power distribution with synchronizing and APFC panels.",
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8fb8c4c3c3b8.png",
+      "https://images.unsplash.com/photo-1564457461758-8ff96e439e83?auto=format&fit=crop&w=1200&q=80",
   },
   {
     name: "Hotels & Hospitality",
     desc: "Silent, reliable power and life-safety panels for guest environments.",
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c487830ed15a.jpg",
+      "https://images.unsplash.com/photo-1775866914943-ba1415a35afc?auto=format&fit=crop&w=1200&q=80",
   },
   {
     name: "Infrastructure Projects",
     desc: "Panels for water treatment, metros, utilities and large civic projects.",
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/182daaae744b.jpg",
+      "https://images.unsplash.com/photo-1779016496135-469c91b6eb0c?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
@@ -241,7 +241,7 @@ export const PROJECTS = [
     panel: "PCC + APFC",
     client: "Commercial Real Estate",
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/828bcd0ba4a9.jpg",
+      "https://images.unsplash.com/photo-1752316435441-f020560fba53?auto=format&fit=crop&w=1200&q=80",
     span: "lg",
   },
   {
@@ -250,7 +250,7 @@ export const PROJECTS = [
     panel: "MCC + PLC",
     client: "Automotive Tier-1",
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/48126a7d3a51.jpg",
+      "https://images.unsplash.com/photo-1777642328916-d96fc156f32b?auto=format&fit=crop&w=1200&q=80",
     span: "md",
   },
   {
@@ -259,7 +259,7 @@ export const PROJECTS = [
     panel: "AMF + Fire",
     client: "Healthcare Group",
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/84031977529d.jpg",
+      "https://images.unsplash.com/photo-1769698678497-c41f0ab47c3e?auto=format&fit=crop&w=1200&q=80",
     span: "md",
   },
   {
@@ -268,7 +268,7 @@ export const PROJECTS = [
     panel: "Sync + PCC",
     client: "Colocation Operator",
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/4bf1833c4b48.png",
+      "https://images.unsplash.com/photo-1506399558188-acca6f8cbf41?auto=format&fit=crop&w=1200&q=80",
     span: "sm",
   },
 ];
@@ -285,25 +285,25 @@ export const MANUFACTURING = {
       title: "Testing Lab",
       desc: "Short-circuit, insulation and temperature-rise verification.",
       image:
-        "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8cc55d4214fe.jpg",
+        "https://images.unsplash.com/photo-1758101755915-462eddc23f57?auto=format&fit=crop&w=1200&q=80",
     },
     {
       title: "Assembly Area",
       desc: "Compartmentalised build stations for MCC & PCC panels.",
       image:
-        "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/de3113daf57d.jpg",
+        "https://images.unsplash.com/photo-1748348389780-3eb3ce44ac65?auto=format&fit=crop&w=1200&q=80",
     },
     {
       title: "Quality Check",
       desc: "Multi-stage inspection with documented traceability.",
       image:
-        "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/4c63ec0cef4e.jpg",
+        "https://images.unsplash.com/photo-1748256086767-8974ee677f77?auto=format&fit=crop&w=1200&q=80",
     },
     {
       title: "Production Floor",
       desc: "Sheet metal, busbar and wiring integrated under one roof.",
       image:
-        "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d518d34a7fe5.jpg",
+        "https://images.unsplash.com/photo-1764114235891-66ff86abaf87?auto=format&fit=crop&w=1200&q=80",
     },
   ],
 };
@@ -324,7 +324,7 @@ export const KNOWLEDGE = {
     date: "Engineering Notes · 2024",
     read: "6 min read",
     image:
-      "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7268fcb52305.png",
+      "https://images.unsplash.com/photo-1509390144018-eeaf65052242?auto=format&fit=crop&w=1200&q=80",
   },
   articles: [
     {
@@ -333,7 +333,7 @@ export const KNOWLEDGE = {
       date: "2024",
       read: "5 min",
       image:
-        "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/cd6c9181c84f.jpg",
+        "https://images.unsplash.com/photo-1615774925655-a0e97fc85c14?auto=format&fit=crop&w=1200&q=80",
     },
     {
       category: "Reference",
@@ -341,7 +341,7 @@ export const KNOWLEDGE = {
       date: "2024",
       read: "4 min",
       image:
-        "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6539a1c5304c.jpg",
+        "https://images.unsplash.com/photo-1780034766312-73825064806c?auto=format&fit=crop&w=1200&q=80",
     },
     {
       category: "Efficiency",
@@ -349,7 +349,7 @@ export const KNOWLEDGE = {
       date: "2023",
       read: "7 min",
       image:
-        "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d3fc3123957a.jpg",
+        "https://images.unsplash.com/photo-1762381157076-4872b31961e0?auto=format&fit=crop&w=1200&q=80",
     },
     {
       category: "Automation",
@@ -357,7 +357,7 @@ export const KNOWLEDGE = {
       date: "2023",
       read: "6 min",
       image:
-        "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/82f06d84a794.jpg",
+        "https://images.unsplash.com/photo-1714596282575-82d224db8c70?auto=format&fit=crop&w=1200&q=80",
     },
   ],
 };

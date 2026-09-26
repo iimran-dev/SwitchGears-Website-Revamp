@@ -18,8 +18,8 @@ export function ProjectCTA() {
       {/* background image */}
       <motion.div style={reduce ? undefined : { y: bgY }} className="absolute inset-0 z-0">
         <img
-          src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/62a7b214f2b6.jpg"
-          alt=""
+          src="https://images.unsplash.com/photo-1776251896448-a5eb8ae25e35?auto=format&fit=crop&w=2000&q=80"
+          alt="High-voltage electrical substation infrastructure"
           aria-hidden="true"
           className="h-full w-full object-cover opacity-25"
           loading="lazy"
